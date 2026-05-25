@@ -15,9 +15,9 @@ MiniPad is a lightweight note board for quick thoughts, reminders, and short dra
 
 ## Keyboard shortcuts
 
-- Ctrl/Cmd + Alt + N: Create a new note
-- Ctrl/Cmd + K: Focus search
-- Esc: Clear active search
+- `Ctrl/Cmd + Alt + N`: Create a new note
+- `Ctrl/Cmd + K`: Focus search
+- `Esc`: Clear active search
 
 ## Theme behavior
 
