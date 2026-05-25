@@ -1,4 +1,5 @@
 const storageKey = "minipad.notes.v2";
+const themeStorageKey = "minipad.theme.v1";
 
 const elements = {
   addNote: document.getElementById("add-note"),
@@ -7,7 +8,30 @@ const elements = {
   notesGrid: document.getElementById("notes-grid"),
   noteTemplate: document.getElementById("note-template"),
   saveState: document.getElementById("save-state"),
-  search: document.getElementById("search-notes")
+  search: document.getElementById("search-notes"),
+  themeToggle: document.getElementById("theme-toggle")
+};
+
+const getCurrentTheme = () => {
+  const active = document.documentElement.getAttribute("data-theme");
+  return active === "dark" ? "dark" : "light";
+};
+
+const applyTheme = (theme) => {
+  const next = theme === "dark" ? "dark" : "light";
+  const isDark = next === "dark";
+
+  document.documentElement.setAttribute("data-theme", next);
+
+  if (elements.themeToggle) {
+    elements.themeToggle.textContent = isDark ? "Light mode" : "Dark mode";
+    elements.themeToggle.setAttribute("aria-pressed", String(isDark));
+  }
+};
+
+const setTheme = (theme) => {
+  applyTheme(theme);
+  localStorage.setItem(themeStorageKey, getCurrentTheme());
 };
 
 const nowIso = () => new Date().toISOString();
@@ -223,6 +247,13 @@ elements.search.addEventListener("input", (event) => {
   render();
 });
 
+if (elements.themeToggle) {
+  elements.themeToggle.addEventListener("click", () => {
+    const nextTheme = getCurrentTheme() === "dark" ? "light" : "dark";
+    setTheme(nextTheme);
+  });
+}
+
 window.addEventListener("keydown", (event) => {
   const key = event.key.toLowerCase();
   const hasMeta = event.ctrlKey || event.metaKey;
@@ -284,5 +315,6 @@ elements.notesGrid.addEventListener("click", (event) => {
 
 window.addEventListener("beforeunload", saveNotes);
 
+applyTheme(getCurrentTheme());
 render();
 setSaveState("Saved locally");
