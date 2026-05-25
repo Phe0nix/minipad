@@ -4,26 +4,80 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <meta name="author" content="Pranab | Phe0nix">
-    <meta name="description" content="Create Mini quick notepads for some urgent writedown things...">
+    <meta name="description" content="Capture quick notes in a polished workspace with instant search and auto-save.">
     <meta name="keywords" content="minipad,notepad,quick writing notes,notedown notes, scrapbook">
-    <title>MiniPad | Made by Phe0nix</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"/>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>MiniPad | Notes that stay out of your way</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="index.css"/>
   </head>
   <body>
-    <h2 class="title">MiniPad</h2>
-    <div class="button">
-      <a href="https://phe0nix.github.io/" id="home" class="button">
-        <span>Home</span>
-      </a>
-      <a href="https://github.com/Phe0nix/minipad" id="view-on-github" class="button" target="_blank">
-        <span>View on GitHub</span>
-      </a>
-    </div>
-<button class="create btn btn-primary">Create MiniPad</button>
-<div id="space"></div>
+    <main class="app-shell">
+      <section class="hero">
+        <div class="hero__copy">
+          <p class="eyebrow">MiniPad</p>
+          <h1>Fast notes, clean desk.</h1>
+          <p class="hero__text">
+            Keep short notes in a focused canvas with instant search, local auto-save,
+            and a layout that stays readable on mobile and desktop.
+          </p>
+        </div>
+
+        <div class="hero__panel">
+          <div class="toolbar">
+            <label class="search-field" for="search-notes">
+              <span>Search notes</span>
+              <input id="search-notes" type="search" placeholder="Search by title or content">
+            </label>
+
+            <div class="toolbar__actions">
+              <button id="add-note" class="btn btn--primary" type="button">New note</button>
+              <button id="clear-notes" class="btn btn--ghost" type="button">Clear all</button>
+            </div>
+
+            <p class="toolbar__hint">Shortcuts: Ctrl/Cmd+Alt+N new note, Ctrl/Cmd+K search, Esc clear search</p>
+          </div>
+
+          <div class="stats" aria-live="polite">
+            <div>
+              <span class="stats__label">Visible notes</span>
+              <strong id="note-count">0</strong>
+            </div>
+            <div>
+              <span class="stats__label">Saved locally</span>
+              <strong id="save-state">Ready</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="links" aria-label="External links">
+        <a href="https://phe0nix.github.io/" class="chip">Creator home</a>
+        <a href="https://github.com/Phe0nix/minipad" class="chip" target="_blank" rel="noreferrer">Source code</a>
+      </section>
+
+      <section class="workspace">
+        <div id="notes-grid" class="notes-grid" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <template id="note-template">
+      <article class="note-card">
+        <div class="note-card__header">
+          <input class="note-card__title" type="text" maxlength="80" placeholder="Untitled note" aria-label="Note title">
+          <button class="icon-button" type="button" data-action="delete" aria-label="Delete note">Delete</button>
+        </div>
+
+        <textarea class="note-card__body" rows="8" placeholder="Write something useful..."></textarea>
+
+        <div class="note-card__footer">
+          <span class="note-card__meta" data-role="updated-at">Just now</span>
+          <span class="note-card__meta" data-role="character-count">0 chars</span>
+        </div>
+      </article>
+    </template>
+
     <script src="index.js"></script>
   </body>
 </html>
