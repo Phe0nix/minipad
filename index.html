@@ -7,6 +7,15 @@
     <meta name="description" content="Capture quick notes in a polished workspace with instant search and auto-save.">
     <meta name="keywords" content="minipad,notepad,quick writing notes,notedown notes, scrapbook">
     <title>MiniPad | Notes that stay out of your way</title>
+    <script>
+      (function () {
+        var storageKey = "minipad.theme.v1";
+        var saved = localStorage.getItem(storageKey);
+        var fallback = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        var theme = saved === "dark" || saved === "light" ? saved : fallback;
+        document.documentElement.setAttribute("data-theme", theme);
+      })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -34,6 +43,7 @@
             <div class="toolbar__actions">
               <button id="add-note" class="btn btn--primary" type="button">New note</button>
               <button id="clear-notes" class="btn btn--ghost" type="button">Clear all</button>
+              <button id="theme-toggle" class="btn btn--ghost" type="button" aria-pressed="false">Dark mode</button>
             </div>
 
             <p class="toolbar__hint">Shortcuts: Ctrl/Cmd+Alt+N new note, Ctrl/Cmd+K search, Esc clear search</p>

@@ -11,9 +11,46 @@
   --primary-strong: #b44728;
   --secondary: #3f6c51;
   --shadow: 0 24px 60px rgba(67, 45, 24, 0.14);
+  --surface-soft: rgba(255, 250, 242, 0.88);
+  --field-bg: rgba(255, 252, 247, 0.95);
+  --field-border: rgba(48, 34, 20, 0.1);
+  --focus-ring: rgba(217, 93, 57, 0.12);
+  --note-bg: linear-gradient(180deg, rgba(255, 251, 245, 0.98), rgba(248, 237, 221, 0.96));
+  --chip-bg: rgba(255, 252, 247, 0.78);
+  --icon-bg: rgba(57, 45, 35, 0.06);
+  --empty-bg: linear-gradient(180deg, rgba(255, 251, 245, 0.85), rgba(255, 246, 235, 0.72));
+  --scroll-thumb: rgba(63, 108, 81, 0.35);
+  --scroll-track: rgba(255, 248, 240, 0.4);
+  --scroll-thumb-border: rgba(255, 248, 240, 0.7);
   --radius-lg: 28px;
   --radius-md: 18px;
   --radius-sm: 12px;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0f1a21;
+  --bg-accent: #152832;
+  --surface: rgba(14, 28, 38, 0.76);
+  --surface-strong: #1a2f3d;
+  --ink: #ebf2f8;
+  --muted: #a5b7c6;
+  --line: rgba(190, 220, 241, 0.14);
+  --primary: #ff8a5b;
+  --primary-strong: #ea6e3f;
+  --secondary: #8cd2b0;
+  --shadow: 0 24px 60px rgba(0, 8, 16, 0.45);
+  --surface-soft: rgba(17, 34, 45, 0.8);
+  --field-bg: rgba(15, 31, 42, 0.95);
+  --field-border: rgba(188, 219, 242, 0.2);
+  --focus-ring: rgba(255, 138, 91, 0.2);
+  --note-bg: linear-gradient(180deg, rgba(21, 39, 51, 0.96), rgba(15, 30, 40, 0.96));
+  --chip-bg: rgba(19, 37, 48, 0.9);
+  --icon-bg: rgba(180, 214, 237, 0.14);
+  --empty-bg: linear-gradient(180deg, rgba(20, 39, 51, 0.9), rgba(15, 30, 40, 0.86));
+  --scroll-thumb: rgba(140, 210, 176, 0.35);
+  --scroll-track: rgba(15, 31, 42, 0.6);
+  --scroll-thumb-border: rgba(14, 28, 38, 0.7);
 }
 
 * {
@@ -33,6 +70,14 @@ body {
     radial-gradient(circle at top left, rgba(217, 93, 57, 0.28), transparent 28%),
     radial-gradient(circle at top right, rgba(63, 108, 81, 0.18), transparent 22%),
     linear-gradient(180deg, #fdf8f1 0%, var(--bg) 55%, #efe3d2 100%);
+  transition: background 240ms ease, color 240ms ease;
+}
+
+:root[data-theme="dark"] body {
+  background:
+    radial-gradient(circle at top left, rgba(255, 138, 91, 0.12), transparent 28%),
+    radial-gradient(circle at top right, rgba(140, 210, 176, 0.1), transparent 26%),
+    linear-gradient(180deg, #0c151b 0%, var(--bg) 55%, #0a1117 100%);
 }
 
 button,
@@ -131,9 +176,9 @@ button {
 .note-card__title,
 .note-card__body {
   width: 100%;
-  border: 1px solid rgba(48, 34, 20, 0.1);
+  border: 1px solid var(--field-border);
   border-radius: var(--radius-sm);
-  background: rgba(255, 252, 247, 0.95);
+  background: var(--field-bg);
   color: var(--ink);
   outline: none;
   transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
@@ -147,7 +192,7 @@ button {
 .note-card__title:focus,
 .note-card__body:focus {
   border-color: rgba(217, 93, 57, 0.55);
-  box-shadow: 0 0 0 4px rgba(217, 93, 57, 0.12);
+  box-shadow: 0 0 0 4px var(--focus-ring);
 }
 
 .toolbar__actions {
@@ -199,7 +244,7 @@ button {
 }
 
 .btn--ghost {
-  background: rgba(255, 250, 242, 0.88);
+  background: var(--surface-soft);
   color: var(--ink);
   border: 1px solid rgba(48, 34, 20, 0.08);
 }
@@ -214,7 +259,7 @@ button {
   padding: 18px;
   border-radius: var(--radius-md);
   border: 1px solid rgba(48, 34, 20, 0.08);
-  background: rgba(255, 250, 242, 0.88);
+  background: var(--surface-soft);
 }
 
 .stats__label {
@@ -240,7 +285,7 @@ button {
 .chip {
   padding: 12px 16px;
   color: var(--ink);
-  background: rgba(255, 252, 247, 0.78);
+  background: var(--chip-bg);
   border: 1px solid rgba(48, 34, 20, 0.08);
 }
 
@@ -264,7 +309,7 @@ button {
   border-radius: var(--radius-md);
   color: var(--muted);
   font-family: "IBM Plex Mono", monospace;
-  background: linear-gradient(180deg, rgba(255, 251, 245, 0.85), rgba(255, 246, 235, 0.72));
+  background: var(--empty-bg);
 }
 
 .notes-grid__empty--search {
@@ -278,7 +323,7 @@ button {
   gap: 14px;
   padding: 18px;
   border-radius: 22px;
-  background: linear-gradient(180deg, rgba(255, 251, 245, 0.98), rgba(248, 237, 221, 0.96));
+  background: var(--note-bg);
   border: 1px solid rgba(48, 34, 20, 0.08);
   box-shadow: 0 12px 28px rgba(67, 45, 24, 0.09);
   animation: note-in 220ms ease;
@@ -313,7 +358,7 @@ button {
 .icon-button {
   min-height: 36px;
   padding: 0 12px;
-  background: rgba(57, 45, 35, 0.06);
+  background: var(--icon-bg);
   color: var(--ink);
   cursor: pointer;
 }
@@ -331,12 +376,12 @@ button {
 
 ::-webkit-scrollbar-thumb {
   border-radius: 999px;
-  background: rgba(63, 108, 81, 0.35);
-  border: 2px solid rgba(255, 248, 240, 0.7);
+  background: var(--scroll-thumb);
+  border: 2px solid var(--scroll-thumb-border);
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(255, 248, 240, 0.4);
+  background: var(--scroll-track);
 }
 
 @keyframes note-in {
